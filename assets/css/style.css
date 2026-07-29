@@ -1,1 +1,611 @@
+/* ==========================================================================
+   1. GOOGLE FONTS & GLOBAL DARK VARIABLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+:root {
+  --gold-main: #f39c12;
+  --gold-glow: rgba(243, 156, 18, 0.4);
+  --gold-gradient: linear-gradient(135deg, #f39c12 0%, #d35400 100%);
+  
+  --emerald-main: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.4);
+  --emerald-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  --bg-deep: #08080a;
+  --bg-surface: #121218;
+  --bg-glass: rgba(18, 18, 24, 0.75);
+  --bg-glass-hover: rgba(28, 28, 38, 0.9);
+  --border-glass: rgba(255, 255, 255, 0.12);
+
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: var(--font-heading);
+  letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   PRELOADER (PREVENTS FLASH OF UNSTYLED CONTENT / NAV POP-IN)
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-deep);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.spinner-logo {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(243, 156, 18, 0.2);
+  border-top-color: var(--gold-main);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   FULL-SCREEN HERO SECTION (ALL DEVICES)
+   ========================================================================== */
+.hero-section,
+.hero-wildscope {
+  min-height: 100vh;
+  min-height: 100dvh; 
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+.hero-section {
+  background: linear-gradient(180deg, rgba(10, 10, 12, 0.55) 0%, #0a0a0c 100%),
+              url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+}
+
+.hero-wildscope {
+  background: linear-gradient(180deg, rgba(6, 35, 25, 0.65) 0%, #04140d 100%),
+              url('https://images.unsplash.com/photo-1511497584788-8767610419ea?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 1.1;
+}
+
+@media (max-height: 700px) {
+  .hero-section,
+  .hero-wildscope {
+    padding-top: 120px;
+    padding-bottom: 20px;
+  }
+}
+
+/* ==========================================================================
+   2. FLOATING GLASS NAVBAR
+   ========================================================================== */
+.navbar-floating {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 50px;
+  padding: 0.75rem 1.75rem;
+  z-index: 1000;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              top 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.4s ease, 
+              box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  will-change: transform, top;
+}
+
+.navbar-floating.scrolled {
+  top: 10px;
+  width: 95%;
+  background: rgba(10, 10, 14, 0.95);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: var(--transition-smooth);
+}
+
+.nav-link {
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  transition: var(--transition-smooth);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: var(--gold-main);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* Navbar Mobile Drawer Override */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1rem;
+    margin-top: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   3. ABOUT SECTION ENHANCEMENTS
+   ========================================================================== */
+.about-section {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(243, 156, 18, 0.05) 0%, transparent 70%);
+  padding: 6rem 0;
+}
+
+body.wildscope-theme .about-section {
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+}
+
+.feature-icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--gold-main);
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
+  transition: var(--transition-smooth);
+}
+
+body.wildscope-theme .feature-icon-box {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--emerald-main);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.glass-card-advanced:hover .feature-icon-box {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.section-tag {
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   4. ANIMATION ENGINE
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: var(--transition-smooth);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: var(--transition-smooth);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: var(--transition-smooth);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: var(--transition-smooth);
+}
+
+.reveal-zoom.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 15px rgba(243, 156, 18, 0.2); }
+  100% { box-shadow: 0 0 35px rgba(243, 156, 18, 0.6); }
+}
+
+.animated-hero-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(243,156,18,0.12) 0%, rgba(0,0,0,0) 60%);
+  animation: rotateGradient 18s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes rotateGradient {
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   5. SHUTTER BUTTONS, CARDS & FORM CONTROLS
+   ========================================================================== */
+.btn-shutter {
+  position: relative;
+  overflow: hidden;
+  background: var(--gold-gradient);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 0.85rem 2rem;
+  z-index: 1;
+  transition: var(--transition-smooth);
+  box-shadow: 0 8px 25px var(--gold-glow);
+}
+
+.btn-shutter::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.btn-shutter:hover {
+  color: #000;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px var(--gold-glow);
+}
+
+.btn-shutter:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+.glass-card-advanced,
+.card-nature {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: 20px !important;
+  padding: 2rem;
+  color: #fff;
+  transition: var(--transition-smooth);
+  transform-style: preserve-3d;
+}
+
+.glass-card-advanced:hover,
+.card-nature:hover {
+  background: var(--bg-glass-hover) !important;
+  border-color: rgba(243, 156, 18, 0.4) !important;
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+}
+
+/* Dark Input Fields across forms */
+.form-control, .form-select {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: #f8fafc !important;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: var(--transition-smooth);
+}
+
+.form-control::placeholder {
+  color: #64748b;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--gold-main) !important;
+  box-shadow: 0 0 20px var(--gold-glow) !important;
+}
+
+.form-select option {
+  background-color: var(--bg-surface);
+  color: #f8fafc;
+}
+
+/* ==========================================================================
+   6. WILDSCOPE NATURE THEME OVERRIDES
+   ========================================================================== */
+body.wildscope-theme {
+  background-color: #04140d;
+}
+
+body.wildscope-theme .navbar-brand {
+  background: var(--emerald-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.wildscope-theme .nav-link::after {
+  background: var(--emerald-main);
+  box-shadow: 0 0 10px var(--emerald-glow);
+}
+
+body.wildscope-theme .glass-card-advanced:hover,
+body.wildscope-theme .card-nature:hover {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--emerald-glow);
+}
+
+body.wildscope-theme .form-control:focus,
+body.wildscope-theme .form-select:focus {
+  border-color: var(--emerald-main) !important;
+  box-shadow: 0 0 20px var(--emerald-glow) !important;
+}
+
+.btn-forest-shutter,
+.btn-forest {
+  background: var(--emerald-gradient) !important;
+  color: #fff !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px var(--emerald-glow);
+  transition: var(--transition-smooth);
+}
+
+.btn-forest-shutter:hover,
+.btn-forest:hover {
+  color: #fff !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px var(--emerald-glow);
+}
+
+/* ==========================================================================
+   7. MULTI-STEP FORM & ADMIN TABLES
+   ========================================================================== */
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.step-indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.step-indicator-progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 3px;
+  background: var(--gold-gradient);
+  z-index: 1;
+  transform: translateY(-50%);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.step-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #121218;
+  border: 2px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #64748b;
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+
+.step-circle.active {
+  background: var(--gold-main);
+  border-color: var(--gold-main);
+  color: #000;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px var(--gold-glow);
+}
+
+.form-step {
+  display: none;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: var(--transition-smooth);
+}
+
+.form-step.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Admin Dashboard Tables */
+.table-dark-custom {
+  --bs-table-bg: transparent;
+  --bs-table-color: #f8fafc;
+  border-color: var(--border-glass);
+}
+
+.table-dark-custom th {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--gold-main);
+  border-bottom: 2px solid var(--border-glass);
+}
+
+/* ==========================================================================
+   DISABLE 3D TILT ON FORMS & ADMIN CARDS
+   ========================================================================== */
+.card,
+#submissionForm,
+.tab-pane .card,
+.card-nature {
+  transform: none !important;
+  transform-style: flat !important;
+  perspective: none !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+/* Ensure tilt cards only apply to glass cards */
+.card:not(.glass-card-advanced):hover {
+  transform: none !important;
+}
+
+/* ==========================================================================
+   FIX FOR SUBMISSION FORM CARD (DISABLE 3D TILT & TRANSFORMS)
+   ========================================================================== */
+#submissionForm,
+#submissionForm .form-step,
+.card {
+  transform: none !important;
+  transform-style: flat !important;
+  perspective: none !important;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Prevent hover movement on standard form cards */
+.card:hover {
+  transform: none !important;
+}
+
+/* ==========================================================================
+   CUSTOM TOOLTIP & FIELD VALIDATION STYLES
+   ========================================================================== */
+.position-relative {
+  position: relative !important;
+}
+
+.field-tooltip-msg {
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 5;
+  animation: fadeInTooltip 0.25s ease-out forwards;
+}
+
+@keyframes fadeInTooltip {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.is-invalid {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.4) !important;
+}
