@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FRAME - Online Photo Submission</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="spinner-logo mb-3"></div>
+    <h5 class="text-white">FRAME SUBMISSION</h5>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        <i class="fa-solid fa-camera-retro"></i> FRAME
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Frame</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="wildscope.html">Wildscope</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-panel.html">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5 mt-5" id="upload" style="max-width: 1150px;">
+    <div class="p-4 p-md-5 my-5 reveal-zoom">
+      <h3 class="text-center fw-bold text-white mb-4">Competition Submission Form</h3>
+
+      
+
+      <div class="step-indicator">
+        <div class="step-indicator-progress" id="stepProgress" style="width: 0%;"></div>
+        <div class="step-circle active" id="circle-1">1</div>
+        <div class="step-circle" id="circle-2">2</div>
+        <div class="step-circle" id="circle-3">3</div>
+      </div>
+
+      <form id="submissionForm">
+        
+
+        <div class="form-step active" id="step-1">
+  <h5 class="fw-bold text-warning mb-3">Step 1: Personal Details</h5>
+
+  <div class="mb-3 text-center p-3 rounded-4" style="background: rgba(255,255,255,0.03); border: 1px dashed var(--border-glass);">
+    <button type="button" class="btn btn-outline-light w-100 py-2 d-flex align-items-center justify-content-center gap-2 rounded-3">
+      <i class="fa-brands fa-google text-danger"></i> Continue with Google Auth
+    </button>
+    <small class="text-white d-block mt-2">Authenticates via Google Account</small>
+  </div>
+
+  <div class="mb-4 position-relative">
+    <label class="form-label text-light fw-semibold">Main Scope Category <span class="text-danger">*</span></label>
+    <select class="form-select bg-dark text-white border-secondary" id="mainCategory" required onchange="handleCategoryChange()">
+      <option value="" selected disabled>Select Main Category</option>
+      <option value="Inter">Inter-School</option>
+      <option value="Inner">Inner-School (Sivali Central College)</option>
+      <option value="Open">Open Category</option>
+    </select>
+  </div>
+
+  <div class="mb-4 position-relative">
+    <label class="form-label text-light fw-semibold">Full Name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control bg-dark text-white border-secondary" id="fullName" placeholder="John Doe" required />
+  </div>
+
+  <div class="mb-4 position-relative">
+    <label class="form-label text-light fw-semibold">Date of Birth <span class="text-danger">*</span></label>
+    <input type="date" class="form-control bg-dark text-white border-secondary" id="dob" required />
+  </div>
+
+  <div class="mb-4 position-relative">
+    <label class="form-label text-light fw-semibold">WhatsApp Mobile Number <span class="text-danger">*</span></label>
+    <input type="tel" class="form-control bg-dark text-white border-secondary" id="whatsappNo" placeholder="+94 7X XXX XXXX" required />
+  </div>
+
+  <button type="button" class="btn btn-shutter w-100 mt-3" onclick="goToStep(2)">Next <i class="fa-solid fa-arrow-right ms-1"></i></button>
+</div>
+
+        <div class="form-step" id="step-2">
+  <h5 class="fw-bold text-warning mb-3" id="step2Title">Step 2: School Details</h5>
+
+  <div id="schoolFieldsWrapper">
+    <div class="mb-4 position-relative">
+      <label class="form-label text-light fw-semibold">School Name <span class="text-danger">*</span></label>
+      <input type="text" class="form-control bg-dark text-white border-secondary" id="schoolName" placeholder="e.g. Your College" required />
+    </div>
+    <div class="mb-4 position-relative">
+      <label class="form-label text-light fw-semibold">School Address <span class="text-danger">*</span></label>
+      <textarea class="form-control bg-dark text-white border-secondary" id="schoolAddress" rows="2" placeholder="Address..." required></textarea>
+    </div>
+    <div class="row g-3 mb-4">
+      <div class="col-md-6 position-relative">
+        <label class="form-label text-light fw-semibold">Photography President Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control bg-dark text-white border-secondary" id="presidentName" placeholder="President Name" required />
+      </div>
+      <div class="col-md-6 position-relative">
+        <label class="form-label text-light fw-semibold">President Contact No <span class="text-danger">*</span></label>
+        <input type="tel" class="form-control bg-dark text-white border-secondary" id="presidentContact" placeholder="+94 7X XXX XXXX" required />
+      </div>
+    </div>
+  </div>
+
+  <div id="openFieldsWrapper" class="d-none">
+    <div class="mb-4 position-relative">
+      <label class="form-label text-light fw-semibold">NIC (National Identity Card) Number <span class="text-danger">*</span></label>
+      <input type="text" class="form-control bg-dark text-white border-secondary" id="nicNumber" placeholder="e.g. 200012345678 or 987654321V" />
+    </div>
+    <div class="mb-4 position-relative">
+      <label class="form-label text-light fw-semibold">Institution / Organization Name <span class="text-secondary small font-monospace">(Optional)</span></label>
+      <input type="text" class="form-control bg-dark text-white border-secondary" id="institutionName" placeholder="e.g. University of Colombo / Freelance" />
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button type="button" class="btn btn-outline-light rounded-pill w-50 py-2" onclick="goToStep(1)">Back</button>
+    <button type="button" class="btn btn-shutter w-50" onclick="goToStep(3)">Next <i class="fa-solid fa-arrow-right ms-1"></i></button>
+  </div>
+</div>
+
+        <div class="form-step" id="step-3">
+  <h5 class="fw-bold mb-3 text-warning"><i class="fa-solid fa-cloud-arrow-up me-2"></i>Step 3: Category & File Upload</h5>
+  
+
+  <p class="text-secondary small mb-4">
+    <i class="fa-solid fa-circle-info text-warning me-1"></i> You can upload up to 4 photographs per category. Enter a title for each photo.
+  </p>
+
+  <div class="category-block mb-4 p-3 rounded-3 bg-opacity-50">
+    <h6 class="fw-bold text-warning mb-3">
+      <i class="fa-solid fa-palette me-2"></i>1. Colour Category (Max 4 Photos)
+    </h6>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block mb-4 p-3 rounded-3 bg-opacity-50">
+    <h6 class="fw-bold text-light mb-3">
+      <i class="fa-solid fa-circle-half-stroke me-2"></i>2. Monochrome Category (Max 4 Photos)
+    </h6>
+    <div class="row g-3">
+      <div class="col-6 col-md-3" v-for="i in 4">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block mb-4 p-3 rounded-3 bg-opacity-50">
+    <h6 class="fw-bold text-success mb-3">
+      <i class="fa-solid fa-leaf me-2"></i>3. Nature & Wildlife (Max 4 Photos)
+    </h6>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block mb-4 p-3 rounded-3 bg-opacity-50">
+    <h6 class="fw-bold text-info mb-3">
+      <i class="fa-solid fa-camera me-2"></i>4. Street & Travel (Max 4 Photos)
+    </h6>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+      <div class="col-6 col-md-3">
+<div class="photo-upload-card p-2 rounded border border-secondary bg-black text-center">
+  <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary mb-2" placeholder="Photo Title" />
+  
+  <div class="preview-box mb-2 border border-secondary rounded d-flex align-items-center justify-content-center" style="height: 200px; background: #121218;">
+    <i class="fa-solid fa-image text-secondary fa-2x preview-icon"></i>
+    <img class="img-preview d-none w-100 h-100 object-fit-cover rounded" alt="Preview" />
+  </div>
+
+  <label class="btn btn-sm btn-outline-warning w-100 mb-2 d-flex align-items-center justify-content-center gap-1 cursor-pointer custom-file-btn">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <span class="file-label-text">Select Image</span>
+    <input type="file" class="file-input d-none" accept="image/*" onchange="previewPhoto(this)" />
+  </label>
+
+  <button type="button" class="btn btn-sm btn-outline-danger w-100 d-none remove-btn" onclick="removePhoto(this)">
+    <i class="fa-solid fa-trash me-1"></i> Remove
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 mt-4">
+    <button type="button" class="btn btn-outline-light rounded-pill w-50 py-2" onclick="nextStep(2)">Back</button>
+    <button type="button" class="btn btn-success w-50 fw-bold" onclick="alert('Submission Successful!')">Submit Entry</button>
+  </div>
+</div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="bg-black text-white py-4 border-top border-secondary border-opacity-25 text-center mt-auto">
+    <div class="container">
+      <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+        <img src="https://via.placeholder.com/40?text=SCCMU" alt="SCCMU Logo" class="rounded-circle" />
+        <span class="fw-bold">Organized by SCCMU</span>
+      </div>
+      <p class="text-white small mb-0">&copy; 2026 Sivali Central College Media Unit.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

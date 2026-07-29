@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WILDSCOPE - Sinharaja Wildlife Marathon</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="wildscope-theme">
+
+  <div id="preloader">
+    <div class="spinner-logo mb-3"></div>
+    <h5 class="text-white">WILDSCOPE 2026</h5>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        <i class="fa-solid fa-camera-retro"></i> WILDSCOPE
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#register">Registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Frame</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-panel.html">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-wildscope animated-hero-bg text-center" id="home">
+    <div class="container my-auto">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+          
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill bg-dark bg-opacity-50 border border-success border-opacity-25 mb-3 reveal-zoom animate-float">
+            <span class="badge bg-success text-white fw-bold rounded-pill">WILDLIFE MARATHON</span>
+            <span class="text-light small">Sinharaja Rainforest Expedition</span>
+          </div>
+
+          <h1 class="hero-title fw-bold text-white mb-3 reveal">
+            <span class="text-success">WILD</span>SCOPE
+          </h1>
+
+          <p class="lead text-light text-opacity-75 mb-4 mx-auto reveal reveal-right" style="max-width: 650px;">
+            Immerse yourself in the biodiversity of Sinharaja Forest. Capture live wildlife, endemic species, and nature in its purest form.
+          </p>
+
+          <div class="d-flex flex-wrap justify-content-center gap-3 reveal-zoom">
+            <a href="#register" class="btn btn-shutter btn-forest-shutter btn-lg d-inline-flex align-items-center gap-2">
+              <i class="fa-solid fa-compass"></i> Register for Marathon
+            </a>
+            <a href="index.html" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 border-1 d-inline-flex align-items-center gap-2">
+              <i class="fa-solid fa-arrow-left"></i> Back to Frame
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-5" id="about">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6 reveal-left">
+          <img src="/assets/img/sinharaja.jpg" alt="Sinharaja Forest" class="img-fluid rounded-4 shadow border border-success border-opacity-25" />
+        </div>
+        <div class="col-md-6 reveal-right">
+          <h2 class="fw-bold text-success mb-3">Sinharaja Photo Marathon</h2>
+          <p class="text-light text-opacity-75">
+            Wildscope is an exclusive wildlife photo marathon conducted inside the UNESCO World Heritage Site, <strong>Sinharaja Rainforest</strong>.
+          </p>
+          <ul class="list-unstyled text-light text-opacity-90">
+            <li class="mb-2"><i class="fa-solid fa-tree text-success me-2"></i> On-the-field live capturing competition</li>
+            <li class="mb-2"><i class="fa-solid fa-leaf text-success me-2"></i> Guided pathways & expert safety standards</li>
+            <li class="mb-2"><i class="fa-solid fa-camera text-success me-2"></i> Focused on endemic species & rainforest dynamics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" class="py-5">
+    <div class="container" style="max-width: 750px;">
+      
+      <div class="text-center mb-4">
+        <button type="button" class="btn btn-outline-success fw-bold px-4 py-2.5 shadow-sm" data-bs-toggle="modal" data-bs-target="#guidelinesModal" style="border-width: 2px;">
+          <i class="fa-solid fa-file-contract me-2"></i>View Rules and Regulations
+        </button>
+      </div>
+
+      <div class="card card-nature p-4 p-md-5 reveal-zoom">
+        <h3 class="fw-bold text-center text-success mb-2">Wildscope 2026 Registration Portal</h3>
+        <p class="text-center text-light text-opacity-75 small mb-4">Complete the official delegation roster for the Sinharaja Wildlife Marathon expedition.</p>
+
+        <form id="regForm">
+          
+          <h5 class="fw-bold text-success border-bottom border-success border-opacity-25 pb-2 mb-3">
+            <i class="fa-solid fa-envelope me-2"></i>Email Address & Identity
+          </h5>
+          <div class="mb-4">
+            <label class="form-label text-light fw-bold mb-1">
+              <i class="fa-brands fa-google text-success me-2"></i>Verify Your Identity <span class="text-danger">*</span>
+            </label>
+            <p class="text-light text-opacity-75 small mb-3">Verify your identity using a valid Google Account before submitting registration details.</p>
+            
+            <div id="g_id_onload"
+                data-client_id="732746980280-tkmvqd6aqc39hte2qaa3ra907ma0eb2u.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleCredentialResponse"
+                data-auto_select="false">
+            </div>
+
+            <div class="g_id_signin d-inline-block shadow-sm"
+                data-type="standard"
+                data-shape="rounded"
+                data-theme="filled_blue"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
+
+            <input type="hidden" id="verifiedEmail" name="email" required />
+            <input type="hidden" id="verifiedName" name="googleName" />
+          </div>
+
+          <h5 class="fw-bold text-success border-bottom border-success border-opacity-25 pb-2 mb-3 mt-4">
+            <i class="fa-solid fa-school me-2"></i>School & Competition Details
+          </h5>
+
+          <div class="mb-3">
+            <label class="form-label text-light">Competition Scope <span class="text-danger">*</span></label>
+            <select class="form-select bg-dark text-white border-secondary" id="regCompetitionScope" name="schoolScope" required>
+              <option value="" disabled selected hidden>Select Competition Type</option>
+              <option value="Inter-School">Inter-School (Open Schools Competition)</option>
+              <option value="Inner-School">Inner-School [Sivali Central college]</option>
+              <option value="AISPA-Member">AISPA Member (All Island School Photographers Association)</option>
+            </select>
+          </div>
+
+          <div id="innerSchoolWrapper" class="mb-3 d-none">
+            <label class="form-label text-white" id="innerSchoolLabel">Select Internal School Name <span class="text-danger">*</span></label>
+            <select class="form-select bg-dark text-white border-secondary" id="innerSchoolSelect" name="innerSchoolName">
+              <option value="" disabled selected hidden>Choose School</option>
+              <option value="Sivali Central College">Sivali Central College</option>
+            </select>
+          </div>
+
+          <div id="standardSchoolDetailsWrapper">
+            <div class="mb-3">
+              <label class="form-label text-light" id="schoolNameLabel">School Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="schoolNameInput" name="schoolName" placeholder="Enter school name" required />
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label text-light" id="schoolAddressLabel">School Address</label>
+              <input type="text" class="form-control" id="schoolAddressInput" name="schoolAddress" placeholder="Enter school address" />
+            </div>
+          </div>
+
+          <div id="aispaDetailsWrapper" class="d-none">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white" id="ticNameLabel">Teacher-in-Charge (TIC) Name</label>
+                <input type="text" class="form-control" id="ticNameInput" name="teacherName" placeholder="Enter TIC name" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white" id="ticContactLabel">TIC Contact Number</label>
+                <input type="tel" class="form-control" id="ticContactInput" name="teacherContact" placeholder="07X XXX XXXX" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white" id="presidentNameLabel">Association President Name</label>
+                <input type="text" class="form-control" id="presidentNameInput" name="presidentName" placeholder="Enter president name" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-white" id="presidentContactLabel">President WhatsApp Number</label>
+                <input type="tel" class="form-control" id="presidentContactInput" name="presidentContact" placeholder="07X XXX XXXX" />
+              </div>
+            </div>
+          </div>
+
+          <h5 class="fw-bold text-success border-bottom border-success border-opacity-25 pb-2 mb-3 mt-4">
+            <i class="fa-solid fa-users me-2"></i>Event Logistics
+          </h5>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label text-light">Official Invitation Letter Required? <span class="text-danger">*</span></label>
+              <select class="form-select bg-dark text-white border-secondary" name="invitationRequired" required>
+                <option value="" disabled selected>Select option</option>
+                <option value="No">No, digital confirmation is fine</option>
+                <option value="Yes">Yes, require an official letter</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label text-light">Total Participants <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" name="participantCount" min="1" max="8" placeholder="Maximum 8" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-light">Photography Equipment Used</label>
+            <input type="text" class="form-control" name="equipment" placeholder="e.g., Canon EOS 80D, Sony A7III, 70-300mm Lens" />
+          </div>
+
+          <h5 class="fw-bold text-success border-bottom border-success border-opacity-25 pb-2 mb-3 mt-4">
+            <i class="fa-solid fa-id-card me-2"></i>Nominated Delegates
+          </h5>
+
+          <div id="delegates-form-container">
+            <div class="delegate-form-block mb-4 p-3 border border-secondary rounded bg-dark bg-opacity-50">
+              <h6 class="text-success fw-bold mb-3">Nominated Delegate #1</h6>
+              
+              <div class="mb-3">
+                <label class="form-label text-light small">Full Name <span class="text-danger">*</span></label>
+                <input type="text" name="delegate_name_1" class="form-control" placeholder="e.g. Kasun Perera" required />
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label text-light small">Date of Birth (YYYY.MM.DD) <span class="text-danger">*</span></label>
+                <input type="text" name="delegate_dob_1" class="form-control" placeholder="e.g. 2008.05.12" required />
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label text-light small">WhatsApp Number <span class="text-danger">*</span></label>
+                <input type="tel" name="delegate_phone_1" class="form-control" placeholder="07X XXX XXXX" required />
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label text-light small">Delegation Dietary Option <span class="text-danger">*</span></label>
+                <select name="delegate_diet_1" class="form-select bg-dark text-white border-secondary" required>
+                  <option value="" disabled selected hidden>Select Option</option>
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Non-Vegetarian">Non-Vegetarian</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4 text-start">
+            <button type="button" id="add-delegate-btn" class="btn btn-outline-success btn-sm">
+              <i class="fa-solid fa-plus me-1"></i> Add Another Delegate
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-forest w-100 py-3 mt-2 fw-bold" id="submitBtn">
+            Submit Registration
+          </button>
+        </form>
+
+        <div id="submittedStateDashboard" class="text-center p-4 border border-success rounded bg-dark bg-opacity-75 d-none mt-3">
+          <i class="fa-solid fa-circle-check text-success mb-3" style="font-size: 3.5rem;"></i>
+          <h3 class="text-white mb-2" id="dashboardStatusTitle">Delegation Submitted!</h3>
+          <p class="text-light text-opacity-75 mb-4">Your registration for the 2026 Sinharaja Marathon is securely locked.</p>
+
+          <hr class="border-secondary my-4" />
+          
+          <p class="text-warning mb-3 fw-bold">Do you want to refill the form?</p>
+          <button type="button" id="triggerDeleteBtn" class="btn btn-danger btn-sm px-4 py-2">
+            <i class="fa-solid fa-trash-can me-2"></i>Delete Previous Entry & Refill
+          </button>
+
+          <hr class="border-secondary my-4" />
+
+          <div class="p-3 mb-2 rounded text-start shadow-sm" style="background-color: rgba(25, 135, 84, 0.15); border: 1px solid rgba(25, 135, 84, 0.3);">
+            <p class="text-white mb-2 small text-center text-uppercase fw-bold text-success">Next Step Integration</p>
+            <a href="https://chat.whatsapp.com/DuluTesYIWe61CDDcaIE4U" target="_blank" class="btn btn-success btn-lg px-4 py-3 fw-bold w-100 d-flex align-items-center justify-content-center border-0 shadow">
+              <i class="fa-brands fa-whatsapp me-2" style="font-size: 1.6rem;"></i> Join Official WhatsApp Group
+            </a>
+          </div>
+        </div>
+
+        <div id="formFeedback" class="text-center mt-3 d-none"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-4 bg-dark text-white text-center border-top border-secondary border-opacity-25">
+    <div class="container">
+      <p class="mb-1 text-light">Wildscope Coordinators: +94 70 123 4567 | wildscope@sivalicentral.lk</p>
+    </div>
+  </section>
+
+  <footer class="bg-black text-white py-4 border-top border-secondary text-center">
+    <div class="container">
+      <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+        <img src="https://via.placeholder.com/40?text=SCCMU" alt="SCCMU Logo" class="rounded-circle" />
+        <span class="fw-bold">Organized by SCCMU</span>
+      </div>
+      <p class="text-white small mb-0">&copy; 2026 Sivali Central College Media Unit.</p>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="guidelinesModal" tabindex="-1" aria-labelledby="guidelinesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-white border-white bg-dark" style="border: 1px solid rgba(234, 179, 8, 0.25);">
+        
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-white fw-bold" id="guidelinesModalLabel">
+            <i class="fa-solid fa-scroll me-2"></i>Rules & Regulations Guidelines
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body text-center p-3">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 px-2">
+            <div class="d-flex gap-2">
+              <button type="button" id="langBtnEng" class="btn btn-white btn-sm fw-bold px-4 py-2 shadow-sm">English</button>
+              <button type="button" id="langBtnSin" class="btn btn-outline-white btn-sm fw-bold px-4 py-2">සිංහල</button>
+            </div>
+            <div>
+              <button type="button" id="zoomToggleBtn" class="btn btn-outline-info btn-sm fw-bold px-3 py-2">
+                <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Click Image to Zoom
+              </button>
+            </div>
+          </div>
+          
+          <div id="guidelinesScrollWrapper" class="rounded border border-secondary p-1 bg-black shadow-inner" 
+               style="overflow: auto; max-height: 60vh; position: relative; cursor: grab; user-select: none;">
+            
+            <img id="guidelinesDisplaySheet" 
+                 src="assets/img/26 guideline eng.png" 
+                 alt="Wildscope Guidelines Sheet" 
+                 class="img-fluid rounded shadow" 
+                 style="width: 100%; max-width: none; display: block; cursor: zoom-in; transition: width 0.25s ease-in-out;"
+                 draggable="false" />
+          </div>
+          <div class="text-white-50 small mt-2 text-start px-2 d-flex justify-content-between">
+            <span><i class="fa-solid fa-circle-info me-1"></i> Use <b>Click & Drag</b> to move around when zoomed in.</span>
+            <span class="d-none d-md-inline text-white">Resolution Optimised</span>
+          </div>
+        </div>
+        
+        <div class="modal-footer border-secondary justify-content-between px-4">
+          <small class="text-white-50">Wildscope 2026 Official Guide</small>
+          <button type="button" class="btn btn-primary px-4 fw-bold" data-bs-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-white" style="background-color: #0f172a; border: 1px solid rgba(239, 68, 68, 0.25);">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-danger" id="deleteConfirmModalLabel">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>Are you absolutely sure?
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-start">
+          <p>This action will permanently delete your active delegation entry from the records database.</p>
+          <p class="mb-0 text-white">You will be required to fill out all structural fields from scratch.</p>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-outline-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="confirmDataDeletionBtn" class="btn btn-danger btn-sm">Yes, Delete Entry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>
